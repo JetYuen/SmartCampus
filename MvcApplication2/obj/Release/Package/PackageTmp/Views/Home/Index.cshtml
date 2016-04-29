@@ -1,0 +1,55 @@
+﻿
+@model MvcApplication2.Models.Person[]
+
+<div class="row section">
+    <form class="col s12" method="post" action="/Home/Add">
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input id="name" name="name" type="text" class="validate">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="card" name="card" type="text" class="validate">
+                <label for="card">Card</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 right-align">
+                <input type="submit" value="submit" class="btn">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row section">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Card</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.Name</td>
+                    <td>@person.Card</td>
+                    <td>
+                        <a class="btn edit-person" href="@Url.Action("Edit", new { person.Id })">Edit</a>
+                        <a class="btn delete-person" data-id="@person.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form id="delete-form" method="post" action="/Home/Delete">
+        <input id="person-id-for-delete" name="id" type="hidden" value="" />
+    </form>
+</div>
+
+@section scripts{
+    <script src="/Scripts/Index.js"></script>
+}
