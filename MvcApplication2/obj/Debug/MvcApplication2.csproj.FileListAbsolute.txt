@@ -335,3 +335,4 @@ C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.WebPages.Depl
 C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.WebPages.Razor.xml
 C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\obj\Debug\Test.dll
 C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\obj\Debug\Test.pdb
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\obj\Debug\MvcApplication2.csprojResolveAssemblyReference.cache

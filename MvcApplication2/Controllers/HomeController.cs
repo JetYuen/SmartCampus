@@ -44,6 +44,14 @@ namespace MvcApplication2.Controllers
                 return View();
             }
         }
+        public ActionResult Log()
+        {
+            var store = MvcApplication.PeopleStore;
+            lock (store)
+            {
+                return View("Log", store.People.ToArray());
+            }
+        }
 
         [HttpPost]
         public ActionResult Add(string name, string card, string date, string pcnum, string state)
@@ -83,7 +91,7 @@ namespace MvcApplication2.Controllers
                 store.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Log");
         }
 
         [HttpGet]
@@ -124,7 +132,7 @@ namespace MvcApplication2.Controllers
                 personToEdit.State = state;
                 store.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Log");
             }
 
 
