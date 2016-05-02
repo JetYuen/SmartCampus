@@ -8,9 +8,15 @@ namespace MvcApplication2.SignalR
 {
     public class NFCHub : Hub
     {
-        public void UpdateNFCStatus(string status)
+        public object UpdateNFCStatus(bool status)
         {
-            Clients.All.updateStatus(status);
+            this.Clients.All.updateStatus(status);
+
+            return new
+            {
+                Foo = "Bar",
+                Now = DateTime.UtcNow
+            };
         }
     }
 }

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Booking Information";
+}
+
+<div style="background-color: lightgray; margin: 0 auto 10px; padding: 10px 5px 20px">
+    <h2>The Open University of Hong Kong
+    </h2>
+    <h2>Smart Campus
+    </h2>
+    <ul>
+        <li>Booking Information</li>
+    </ul>
+</div>
+            <div id="container">
+                <ul id="menu">
+                    <li>@Html.ActionLink("Appointment", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Check-in", "NFC", "Home")</li>
+                    <li>@Html.ActionLink("Booking Information", "Log", "Home")</li>
+                </ul>
+            </div>
+<div class="row section">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Card</th>
+                <th>Date</th>
+                <th>PC No.</th>
+                <th>Time Period</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.Name</td>
+                    <td>@person.Card</td>
+                    <td>@person.Date</td>
+                    <td>@person.PCNum</td>
+                    <td>@person.State</td>
+                    <td>
+                        <a class="btn edit-person" href="@Url.Action("Edit", new { person.Id })">Edit</a>
+                        <a class="btn delete-person" data-id="@person.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form id="delete-form" method="post" action="/Home/Delete">
+        <input id="person-id-for-delete" name="id" type="hidden" value="" />
+    </form>
+</div>
+
+@section scripts{
+    <script src="/Scripts/Index.js"></script>
+}

@@ -307,3 +307,31 @@ C:\Users\Jet Yuen\Desktop\FYP\NFC System\MvcApplication2\bin\System.Web.WebPages
 C:\Users\Jet Yuen\Desktop\FYP\NFC System\MvcApplication2\obj\Debug\MvcApplication2.csprojResolveAssemblyReference.cache
 C:\Users\Jet Yuen\Desktop\FYP\NFC System\MvcApplication2\obj\Debug\Test.dll
 C:\Users\Jet Yuen\Desktop\FYP\NFC System\MvcApplication2\obj\Debug\Test.pdb
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Test.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Test.pdb
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\EntityFramework.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\EntityFramework.SqlServer.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Microsoft.AspNet.SignalR.Owin.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Newtonsoft.Json.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Owin.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.Mvc.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.Razor.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.WebPages.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.WebPages.Razor.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\EntityFramework.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\EntityFramework.SqlServer.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Microsoft.AspNet.SignalR.Owin.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\Newtonsoft.Json.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.Razor.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.WebPages.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\bin\System.Web.WebPages.Razor.xml
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\obj\Debug\Test.dll
+C:\Users\Jet Yuen\Desktop\Debugging\MvcApplication2\obj\Debug\Test.pdb
