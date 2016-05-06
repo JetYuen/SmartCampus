@@ -17,6 +17,9 @@ using System.Runtime.InteropServices;
 using MvcApplication2.Services;
 using System.Web.WebPages.Scope;
 using System.Reflection;
+using System.IO;
+using Newtonsoft.Json;
+using MvcApplication2.Models;
 
 
 namespace MvcApplication2
@@ -84,22 +87,13 @@ namespace MvcApplication2
             NFCContext nfcContext = new NFCContext();
             NFCDevice nfcDevice = nfcContext.OpenDevice(null);
             deviceNameList = nfcContext.ListDeviceNames();
-            Console.WriteLine("Device Count: " + deviceNameList.Count());
-            foreach (string deviceName in deviceNameList)
-            {
-                Console.WriteLine("Device Name: " + deviceName);
-            }
             int rtn = nfcDevice.initDevice();
-            if (rtn < 0)
-            {
-                Console.WriteLine("Context init failed");
-            }
+
             nfc_target nfcTarget = new nfc_target();
             List<nfc_modulation> nfc_modulationList = new List<nfc_modulation>();
             nfc_modulation nfcModulation = new nfc_modulation();
             nfcModulation.nbr = nfc_baud_rate.NBR_106;
             nfcModulation.nmt = nfc_modulation_type.NMT_ISO14443A;
-
             nfc_modulationList.Add(nfcModulation);
 
             string currentSignalRStr = null;
@@ -107,6 +101,7 @@ namespace MvcApplication2
             string signalRStr;
             string consoleStr;
             string state = "---";
+            Person p;
 
             for (; ; )
             {
@@ -114,23 +109,41 @@ namespace MvcApplication2
                 rtn = nfcDevice.Pool(nfc_modulationList, 1, 2, out nfcTarget);
                 if (rtn < 0)
                 {
-                    consoleStr = "NFC-Poll Targert Not Found!";
+                    consoleStr = "NFC Targert Not Found!";
                     signalRStr = "---";
                 }
                 else
                 {
                     signalRStr = string.Join(
-                        separator: "",
-                        values: nfcTarget.nti.abtUid.Take((int)nfcTarget.nti.szUidLen).Select(b => b.ToString("X2").ToLower())
-                     );
-                    
-                    consoleStr = string.Format("NFC-Poll Target Found: uid is [{0}]", signalRStr);
+                     separator: "",
+                    values: nfcTarget.nti.abtUid.Take((int)nfcTarget.nti.szUidLen).Select(b => b.ToString("X2").ToLower())
+                    );
+
+                    consoleStr = string.Format("NFC Target Found: uid is [{0}]", signalRStr);
+                    if (File.Exists("App_Data/people.json"))
+                    {
+                        using (StreamReader r = new StreamReader("App_Data/people.json"))
+                        {
+                            string json = r.ReadToEnd();
+                            List<Person> items = JsonConvert.DeserializeObject<List<Person>>(json);
+                            p = items.First(x => x.Card == signalRStr);
+                            Console.WriteLine(p.Name);
+                            Console.WriteLine(p.Date);
+                            Console.WriteLine(p.PCNum);
+                            Console.WriteLine(p.State);
+                            NFC.Instance.UpdateDateStatus(p);
+                            NFC.Instance.UpdateNameStatus(p);
+                            NFC.Instance.UpdatePCNumStatus(p);
+                            NFC.Instance.UpdateTimeStatus(p);
+                            
+                        }
+                    }
                 }
                 if (signalRStr != state)
                 {
                     if (signalRStr != currentSignalRStr)
-                    {
-                        NFC.Instance.UpdateNFCStatus(signalRStr);
+                    {                   
+                        NFC.Instance.CardIDCheck(signalRStr);
                         currentSignalRStr = signalRStr;
                         Thread.Sleep(100);
                     }
@@ -140,12 +153,34 @@ namespace MvcApplication2
                 }
                 else
                 {
-                    NFC.Instance.UpdateNFCStatus(signalRStr);
+                    NFC.Instance.CardIDCheck(signalRStr);
                     currentSignalRStr = signalRStr;
                 }
 
                 if (consoleStr != currentConsoleStr)
                 {
+                    DateTime now = DateTime.Now;
+                    FileStream ostrm;
+                    StreamWriter writer;
+                    TextWriter oldOut = Console.Out;
+                    try
+                    {
+                        ostrm = new FileStream("Record.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                        writer = new StreamWriter(ostrm);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Cannot open Record.txt for writing");
+                        Console.WriteLine(e.Message);
+                        return;
+                    }
+                    Console.SetOut(writer);
+                    Console.WriteLine(now);
+                    Console.WriteLine(consoleStr);
+                    Console.SetOut(oldOut);
+                    writer.Close();
+                    ostrm.Close();
+                    Console.WriteLine(now);
                     Console.WriteLine(consoleStr);
                     currentConsoleStr = consoleStr;
                 }
@@ -153,4 +188,3 @@ namespace MvcApplication2
         }
     }
 }
-

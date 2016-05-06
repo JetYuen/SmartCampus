@@ -13,6 +13,10 @@ using MvcApplication2.PInvoke;
 using System.Runtime.InteropServices;
 using SharpNFC;
 using MvcApplication2.Models;
+using System.IO;
+using Newtonsoft.Json;
+
+
 
 
 namespace MvcApplication2.Controllers
@@ -21,7 +25,7 @@ namespace MvcApplication2.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
+        {   
             List<SelectListItem> PCList = new List<SelectListItem>();
             PCList.Add(new SelectListItem { Text = "PC#1", Value = "PC#1" });
             PCList.Add(new SelectListItem { Text = "PC#2", Value = "PC#2" });
@@ -55,7 +59,7 @@ namespace MvcApplication2.Controllers
 
         [HttpPost]
         public ActionResult Add(string name, string card, string date, string pcnum, string state)
-        {
+        {   
             List<SelectListItem> PCList = new List<SelectListItem>();
             PCList.Add(new SelectListItem {Text = "PC#1", Value = "PC#1"});
             PCList.Add(new SelectListItem {Text = "PC#2", Value = "PC#2"});
@@ -63,6 +67,7 @@ namespace MvcApplication2.Controllers
             PCList.Add(new SelectListItem {Text = "PC#4", Value = "PC#4"});
             PCList.Add(new SelectListItem {Text = "PC#5", Value = "PC#5"});
             ViewData["pcNum"] = PCList;
+
 
             var store = MvcApplication.PeopleStore;
             lock (store)
@@ -75,6 +80,7 @@ namespace MvcApplication2.Controllers
                     PCNum = pcnum,
                     State = state
                 });
+     
                 store.SaveChanges();
             }
 
@@ -137,12 +143,39 @@ namespace MvcApplication2.Controllers
 
 
         }
-
-
-        public ActionResult OnButtonTestNFC(string currentNFC)
+        public ActionResult OnButtonTest(string current)
         {
-            if (currentNFC == "true") MvcApplication2.SignalR.NFC.Instance.UpdateNFCStatus("false");
-            else MvcApplication2.SignalR.NFC.Instance.UpdateNFCStatus("true");
+            if (current == "true") MvcApplication2.SignalR.NFC.Instance.CardIDCheck("false");
+            else MvcApplication2.SignalR.NFC.Instance.CardIDCheck("true");
+            return null;
+        }
+
+        public ActionResult OnButtonTestName(string currentname)
+        {
+            Person p = null;
+            if (currentname == "true") MvcApplication2.SignalR.NFC.Instance.UpdateNameStatus(p);
+            else MvcApplication2.SignalR.NFC.Instance.UpdateNameStatus(p);
+            return null;
+        }
+        public ActionResult OnButtonTestDate(string currentdate)
+        {
+            Person p = null;
+            if (currentdate == "true") MvcApplication2.SignalR.NFC.Instance.UpdateDateStatus(p);
+            else MvcApplication2.SignalR.NFC.Instance.UpdateDateStatus(p);
+            return null;
+        }
+        public ActionResult OnButtonTestPCNum(string currentpcnum)
+        {
+            Person p = null;
+            if (currentpcnum == "true") MvcApplication2.SignalR.NFC.Instance.UpdatePCNumStatus(p);
+            else MvcApplication2.SignalR.NFC.Instance.UpdatePCNumStatus(p);
+            return null;
+        }
+        public ActionResult OnButtonTestTime(string currenttime)
+        {
+            Person p = null;
+            if (currenttime == "true") MvcApplication2.SignalR.NFC.Instance.UpdateTimeStatus(p);
+            else MvcApplication2.SignalR.NFC.Instance.UpdateTimeStatus(p);
             return null;
         }
 
@@ -194,6 +227,12 @@ namespace MvcApplication2.Controllers
 
             }
             return Json(new SelectList(states, "Value", "Text"));
+        }
+        public ActionResult InsertDetails(FormCollection collection)
+        {
+            //DO LOGIC TO INSERT DETAILS
+            ViewBag.result = "Record Inserted Successfully!";
+            return View("Index");
         }
     }
 }
