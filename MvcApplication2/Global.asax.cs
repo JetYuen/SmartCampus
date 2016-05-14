@@ -134,8 +134,7 @@ namespace MvcApplication2
                             NFC.Instance.UpdateDateStatus(p);
                             NFC.Instance.UpdateNameStatus(p);
                             NFC.Instance.UpdatePCNumStatus(p);
-                            NFC.Instance.UpdateTimeStatus(p);
-                            
+                            NFC.Instance.UpdateTimeStatus(p);                           
                         }
                     }
                 }
@@ -144,7 +143,7 @@ namespace MvcApplication2
                     if (signalRStr != currentSignalRStr)
                     {                   
                         NFC.Instance.CardIDCheck(signalRStr);
-                        currentSignalRStr = signalRStr;
+                        currentSignalRStr = signalRStr;                        
                         Thread.Sleep(100);
                     }
                     else
@@ -154,6 +153,10 @@ namespace MvcApplication2
                 else
                 {
                     NFC.Instance.CardIDCheck(signalRStr);
+                    NFC.Instance.UpdateDateStatus(null);
+                    NFC.Instance.UpdateNameStatus(null);
+                    NFC.Instance.UpdateTimeStatus(null);
+                    NFC.Instance.UpdatePCNumStatus(null);
                     currentSignalRStr = signalRStr;
                 }
 
