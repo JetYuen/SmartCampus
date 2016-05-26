@@ -154,8 +154,6 @@
     <Compile Include="Services\PeopleStore.cs" />
     <Compile Include="SignalR\NFC.cs" />
     <Compile Include="SignalR\NFCHub.cs" />
-    <Compile Include="SignalR\GPIO.cs" />
-    <Compile Include="SignalR\GPIOHub.cs" />
     <Compile Include="TinyGPIO.cs" />
   </ItemGroup>
   <ItemGroup>

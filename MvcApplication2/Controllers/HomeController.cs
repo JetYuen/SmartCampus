@@ -15,6 +15,7 @@ using SharpNFC;
 using MvcApplication2.Models;
 using System.IO;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 
 
 
@@ -228,12 +229,7 @@ namespace MvcApplication2.Controllers
             }
             return Json(new SelectList(states, "Value", "Text"));
         }
-        public ActionResult InsertDetails(FormCollection collection)
-        {
-            //DO LOGIC TO INSERT DETAILS
-            ViewBag.result = "Record Inserted Successfully!";
-            return View("Index");
-        }
+
     }
 }
 
